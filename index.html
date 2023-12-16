@@ -1,29 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spezielle Nachricht für dich</title>
+    <title>Spezielle Nachricht für Dich</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            margin: 0;
+        }
+        .frage {
+            margin-bottom: 20px;
+        }
+        .antwort-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .antwort-button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            .antwort-button {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <h1>Frage an dich:</h1>
-    
-    <label for="antwort">Deine Antwort:</label>
-    <input type="text" id="antwort" placeholder="Schreibe hier deine Antwort">
-
-    <br><br>
-
-    <button onclick="antwortButton('Ja')">Ja</button>
-    <button onclick="antwortButton('Vielleicht')">Vielleicht</button>
-    <button onclick="antwortButton('Nein')">Nein</button>
-
-    <script>
-        function antwortButton(antwort) {
-            alert("Du hast geantwortet: " + antwort);
-            // Hier könntest du den QR-Code für die Antwort generieren und verschicken.
-        }
-    </script>
-
+    <div class="frage">
+        <h2>Hier ist deine Frage:</h2>
+        <p>[Hier deine Frage einfügen]</p>
+    </div>
+    <div class="antworten">
+        <button class="antwort-button">Antwort 1</button>
+        <button class="antwort-button">Antwort 2</button>
+        <button class="antwort-button">Antwort 3</button>
+    </div>
 </body>
 </html>
