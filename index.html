@@ -3,53 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spezielle Nachricht für Dich</title>
+    <title>Besondere Nachricht</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            padding-top: 50px;
+            font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f0f0f0; /* Sanfte Hintergrundfarbe */
-        }
-        .frage {
-            margin-bottom: 20px;
-            border: 2px solid #4CAF50; /* Rahmen um die Frage */
             padding: 20px;
-            border-radius: 10px;
-            background-color: #ffffff; /* Hintergrundfarbe für die Frage */
+            background-color: #f0f0f0;
+        }
+        .brief {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .accordion {
+            background-color: white;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            border-radius: 5px;
         }
         .antwort-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: #008CBA; /* Farbe der Antwort-Buttons */
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #4CAF50;
             color: white;
+            border: none;
+            text-align: center;
             cursor: pointer;
-            font-size: 16px;
+            border-radius: 5px;
         }
         .antwort-button:hover {
-            background-color: #005f6a; /* Farbe beim Hovern */
-        }
-        @media (max-width: 600px) {
-            .antwort-button {
-                padding: 15px 30px;
-                font-size: 18px;
-            }
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="frage">
-        <h2>Hier ist deine Frage:</h2>
-        <p>[Hier deine Frage einfügen]</p>
+
+    <div class="brief">
+        <p>[Hier deine persönliche Nachricht einfügen]</p>
     </div>
-    <div class="antworten">
-        <button class="antwort-button">Ja</button>
-        <button class="antwort-button">Nein</button>
-        <button class="antwort-button">Vielleicht</button>
+
+    <button class="accordion">Fragen anzeigen</button>
+    <div class="panel">
+        <button class="antwort-button">Antwort 1</button>
+        <button class="antwort-button">Antwort 2</button>
+        <button class="antwort-button">Antwort 3</button>
     </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } 
+            });
+        }
+    </script>
+
 </body>
 </html>
