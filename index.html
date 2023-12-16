@@ -3,36 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Besondere Nachricht</title>
+    <title>Besondere Weihnachtsnachricht</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
+            height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background: url('bild.png) no-repeat center center fixed;
+            background-size: cover;
         }
         .container {
             width: 80%;
-            max-width: 500px; /* Max. Breite des Containers */
-            background-color: white;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.8); /* Leicht transparent, um den Text lesbarer zu machen */
             padding: 20px;
-            margin: 20px;
+            margin: 20px auto; /* Zentriert den Container in der Mitte der Seite */
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .brief {
             margin-bottom: 20px;
-            border: 1px solid #ddd;
+            border: 1px solid #b38e5e;
             border-radius: 5px;
             padding: 15px;
+            background-color: #fff4e6;
         }
         .accordion {
-            background-color: #eee;
-            color: #444;
+            background-color: #c0392b;
+            color: white;
             cursor: pointer;
             padding: 15px;
             border: none;
@@ -43,11 +42,11 @@
             border-radius: 5px;
         }
         .active, .accordion:hover {
-            background-color: #ccc;
+            background-color: #a93226;
         }
         .panel {
             padding: 0 18px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.8);
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.2s ease-out;
@@ -58,7 +57,7 @@
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            background-color: #4CAF50;
+            background-color: #27ae60;
             color: white;
             border: none;
             text-align: center;
@@ -66,7 +65,7 @@
             border-radius: 5px;
         }
         .antwort-button:hover {
-            background-color: #45a049;
+            background-color: #229954;
         }
     </style>
 </head>
@@ -74,7 +73,7 @@
 
     <div class="container">
         <div class="brief">
-            <p>[Hier deine persönliche Nachricht einfügen]</p>
+            <p>[Hier deine persönliche Weihnachtsnachricht einfügen]</p>
         </div>
 
         <button class="accordion">Fragen anzeigen</button>
