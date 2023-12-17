@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frohe Weihnachten Katha!</title>
+    <title>Besondere Weihnachtsnachricht</title>
     <style>
         body, html {
             height: 100%;
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: url('bild.png') no-repeat center center fixed;
+            background: url('Bild.png') no-repeat center center fixed;
             background-size: cover;
         }
         .container {
@@ -29,20 +29,17 @@
             padding: 15px;
             background-color: #fff4e6;
         }
-        .accordion {
-            background-color: #c0392b;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
+        .gift-button {
+            background: none;
             border: none;
-            text-align: center;
-            outline: none;
-            font-size: 15px;
-            transition: 0.4s;
-            border-radius: 5px;
+            padding: 0;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
         }
-        .active, .accordion:hover {
-            background-color: #a93226;
+        .gift-button img {
+            max-width: 20%;%
+            height: auto;
         }
         .panel {
             padding: 0 18px;
@@ -76,28 +73,20 @@
             <p>[Hier deine persönliche Weihnachtsnachricht einfügen]</p>
         </div>
 
-        <button class="accordion">Willst du mit mir gehen?</button>
+        <button class="gift-button" onclick="togglePanel()">
+            <img src='bild2.png' alt="Öffne dein Geschenk">
+        </button>
         <div class="panel">
-            <button class="antwort-button">Ja</button>
-            <button class="antwort-button">Nein</button>
-            <button class="antwort-button">Vielleicht</button>
+            <button class="antwort-button">Antwort 1</button>
+            <button class="antwort-button">Antwort 2</button>
+            <button class="antwort-button">Antwort 3</button>
         </div>
     </div>
 
     <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                } 
-            });
+        function togglePanel() {
+            var panel = document.querySelector('.panel');
+            panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
         }
     </script>
 
