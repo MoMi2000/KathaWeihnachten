@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: url('bild.png') no-repeat center center fixed;
+            background: url('Bild.png') no-repeat center center fixed;
             background-size: cover;
         }
         .container {
@@ -21,7 +21,7 @@
             margin: 20px auto;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            display: none; /* Anfangs versteckt */
+            display: none;
         }
         .brief {
             margin-bottom: 20px;
@@ -90,8 +90,7 @@
                 opacity: 0;
             }
         }
- 
-		#passwordPrompt {
+        #passwordPrompt {
             text-align: center;
             margin-top: 20px;
             background-color: rgba(255, 255, 255, 0.8); /* Leicht transparenter weißer Hintergrund */
@@ -102,15 +101,13 @@
             max-width: 400px;
             margin: 50px auto; /* Zentriert das Feld */
         }
-
-        #passwordInput {
+		 #passwordInput {
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
             border: 1px solid #b38e5e;
         }
-
-        .login-button {
+		.login-button {
             display: block;
             width: 50%;
             padding: 10px;
@@ -138,7 +135,8 @@
 
     <div class="container">
         <div class="brief">
-            <p>Liebe Katha, ... [Rest des Textes] ...</p>
+            <p>Liebe Katha,
+ich wünsche dir frohe Weihnachten und schöne, besinnliche Tage auf dem Schiff. Leider verbringen wir die Feiertage räumlich getrennt, aber ich bin mir sicher, wir machen das Beste daraus und sind in Gedanken ganz nah beieinander! In der Vorweihnachtszeit habe ich sehr gemerkt, wie du mir fehlst und welche Bedeutung du mittlerweile in meinem Alltag hast. Ich freue mich immer über jede Nachricht von dir und noch mehr, wenn wir mal per Video telefonieren. Du hast es mir wirklich sehr angetan. Ich hätte nie gedacht, dass ich dieses Jahr mit einer Person beende, die mir so viel bedeutet wie du. Ich kann es wirklich kaum erwarten, dich wiederzusehen und Zeit mit dir zu verbringen. Innerhalb der letzten Wochen sind wir uns immer nähergekommen und haben einiges über den jeweils anderen erfahren. Wie ich dir schon gesagt habe, habe ich dir kein Paket geschickt. Ich wollte dir etwas Persönliches und Besonderes zu Weihnachten schenken. Wenn du auf das Geschenk weiter unten klickst, wirst du erfahren, was es ist. Ich kann nicht oft genug sagen, wie lieb ich dich habe und wie froh ich darüber bin, dass du damals in meine Kabine gestolpert bist. Du bist wirklich ein ganz besonders toller Mensch. So, jetzt genug der Worte, jetzt sollst du dein Geschenk öffnen:</p>
         </div>
 
         <button class="gift-button" onclick="togglePanel()">
@@ -146,10 +144,11 @@
         </button>
 
         <div class="panel">
-            <p class="frage">Willst du mit mir gehen?</p>
-            <button class="antwort-button" onclick="celebrateWithHearts()">Ja</button>
-            <button class="antwort-button">Nein</button>
-            <button class="antwort-button">Vielleicht</button>
+            <p class="frage">Lange habe ich überlegt was ich dir schenken könnte und bin schglussendlich zu dem Entschluss gekommen, dasss es etwas besonderes und einzigartiges sein soll. Also habe ich mich dazu entschlossen dir mein Herz zu schenken. Daher die Frage: Willst du mit mir gehen? </p>
+            <button class="antwort-button" onclick="handleAnswer('Ja')">Ja</button>
+			<button class="antwort-button" onclick="handleAnswer('Nein')">Nein</button>
+			<button class="antwort-button" onclick="handleAnswer('Vielleicht')">Vielleicht</button>
+
         </div>
     </div>
 
@@ -169,7 +168,26 @@
             for (var i = 0; i < 20; i++) {
                 createHeart();
             }
+            localStorage.setItem('answered', 'true');
+            checkIfAnswered();
         }
+		function handleAnswer(answer) {
+        var message = '';
+        if (answer === 'Ja') {
+            for (var i = 0; i < 20; i++) {
+                createHeart();
+            }
+            message = '<p style="text-align:center; margin-top:20px;">Genau auf die Antwort habe ich gehofft! Ich freue mich so auf die nächste Zeit mir dir und kanns kaum erwarten dich wieder zu sehen!</p>';
+        } else if (answer === 'Nein') {
+            message = '<p style="text-align:center; margin-top:20px;">Das ist natürlich nicht die Antwort auf die ich gehofft habe aber natürlich akzeptiere ich das. Da war ich wohl etwas zu voreilig!</p>';
+        } else {
+            message = '<p style="text-align:center; margin-top:20px;">Das ist völllig fein. Ich wollte dich damit auch nicht überrumpeln. Lass uns einfach schauen was die Zeit bringt</p>';
+        }
+
+        document.querySelector('.container').innerHTML += message;
+        localStorage.setItem('answered', 'true');
+        checkIfAnswered();
+    }
 
         function togglePanel() {
             var panel = document.querySelector('.panel');
@@ -178,13 +196,25 @@
 
         function checkPassword() {
             var password = document.getElementById('passwordInput').value;
-            if (password == 'Dusche') { // Ersetze 'DasPasswort' durch das tatsächliche Passwort
+            if (password == 'Dusche') {
                 document.getElementById('passwordPrompt').style.display = 'none';
                 document.querySelector('.container').style.display = 'block';
+                checkIfAnswered();
             } else {
                 alert('Falsches Passwort!');
             }
         }
+
+        function checkIfAnswered() {
+            if (localStorage.getItem('answered')) {
+                document.querySelector('.panel').style.display = 'none';
+                document.querySelector('.container').innerHTML += '<p style="text-align:center; margin-top:20px;">Hab dich lieeeeb!</p>';
+            }
+        }
+
+        window.onload = function() {
+            checkIfAnswered();
+        };
     </script>
 
 </body>
